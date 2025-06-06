@@ -92,6 +92,7 @@
         justify-content: center;
         align-items: center;
         color: var(--dark-color);
+        transition: background 0.3s ease, color 0.3s ease;
       }
 
       .container {
@@ -103,6 +104,7 @@
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         overflow: hidden;
         animation: fadeIn 0.5s ease-out;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
       }
 
       .header {
@@ -115,6 +117,7 @@
         );
         color: white;
         position: relative;
+        transition: background 0.3s ease, color 0.3s ease;
       }
 
       .header h1 {
@@ -152,7 +155,7 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
         overflow: hidden;
-        transition: all 0.3s ease;
+        transition: box-shadow 0.3s ease, background-color 0.3s ease;
       }
 
       .input-group:focus-within {
@@ -165,6 +168,7 @@
         border: none;
         font-size: 1rem;
         outline: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
 
       .input-group button {
@@ -206,6 +210,7 @@
         border: 1px solid #ddd;
         outline: none;
         cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
       }
 
       .option-group input[type="color"] {
@@ -216,6 +221,7 @@
         cursor: pointer;
         padding: 0;
         background: none;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
       }
 
       .option-group input[type="color"]::-webkit-color-swatch-wrapper {
@@ -242,17 +248,49 @@
         transition: all 0.3s ease;
       }
 
+      .remove-logo {
+        display: none;
+      }
+
       .btn-icon:hover {
         transform: scale(1.1);
       }
 
-      .logo-preview {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-left: 0.5rem;
+      .logo-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+      }
+
+      .logo-wrapper input[type="file"] {
+        flex: 1;
+        max-width: 200px;
+      }
+
+      .logo-preview-wrapper {
+        margin-top: 10px;
         display: none;
+        width: 100%;
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.3s ease;
+      }
+
+      .logo-preview-wrapper.show {
+        display: flex;
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .logo-preview {
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+        border: 2px solid var(--primary-color);
+        border-radius: 8px;
+        padding: 5px;
+        background: #fff;
       }
 
       .result-section {
@@ -273,6 +311,7 @@
         border-radius: 10px;
         padding: 2rem;
         box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+        transition: background-color 0.3s ease;
       }
 
       .qr-placeholder {
@@ -301,14 +340,24 @@
         border: 1px solid #eee;
         border-radius: 5px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(0.8) translateY(20px);
       }
 
       .qr-code.show {
         opacity: 1;
-        transform: scale(1);
+        transform: scale(1) translateY(0);
+      }
+
+      .qr-code.loading {
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0% { opacity: 0.6; }
+        50% { opacity: 0.8; }
+        100% { opacity: 0.6; }
       }
 
       .actions {
@@ -358,6 +407,7 @@
         text-align: center;
         background-color: #f8f9fa;
         color: #6c757d;
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
 
       .footer p {
@@ -717,6 +767,26 @@
         .social-links a {
           font-size: 1.3rem;
         }
+
+        .logo-wrapper {
+          flex-wrap: wrap;
+        }
+
+        .logo-wrapper input[type="file"] {
+          max-width: none;
+          width: 100%;
+        }
+
+        .logo-preview-wrapper {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+        }
+
+        .logo-preview {
+          width: 120px;
+          height: 120px;
+        }
       }
 
       @media (max-width: 480px) {
@@ -744,6 +814,41 @@
         .qr-placeholder p {
           font-size: 0.9rem;
         }
+
+        .logo-preview {
+          width: 100px;
+          height: 100px;
+        }
+      }
+
+      /* Dark mode transitions */
+      .container {
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .header {
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+
+      .input-group {
+        transition: box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .input-group input {
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .option-group select,
+      .option-group input[type="color"] {
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
+
+      .qr-container {
+        transition: background-color 0.3s ease;
+      }
+
+      .footer {
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
     </style>
   </head>
@@ -787,10 +892,15 @@
             </div>
             <div class="option-group">
               <label for="logo">Logo:</label>
-              <input type="file" id="logo" accept="image/*" />
-              <button id="remove-logo" class="btn-icon" title="Remove Logo" style="display: none;">
-                <i class="fas fa-times"></i>
-              </button>
+              <div class="logo-wrapper">
+                <input type="file" id="logo" accept="image/*" />
+                <button id="remove-logo" class="btn-icon remove-logo" title="Remove Logo">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+              <div class="logo-preview-wrapper">
+                <img id="logo-preview" class="logo-preview" alt="Logo Preview" />
+              </div>
             </div>
           </div>
         </div>
@@ -886,6 +996,8 @@
         const confirmNo = document.getElementById("confirm-no");
         const logoInput = document.getElementById("logo");
         const removeLogoBtn = document.getElementById("remove-logo");
+        const logoPreview = document.getElementById("logo-preview");
+        const logoPreviewWrapper = document.querySelector(".logo-preview-wrapper");
 
         let lastQRData = null; // Untuk SVG/PDF export
         let currentDeleteIndex = null; // Untuk menyimpan index item yang akan dihapus
@@ -1011,8 +1123,13 @@
             const reader = new FileReader();
             reader.onload = function(e) {
               selectedLogo = e.target.result;
-              removeLogoBtn.style.display = 'inline-block';
-              generateQRCode();
+              removeLogoBtn.classList.remove('remove-logo');
+              logoPreview.src = selectedLogo;
+              logoPreviewWrapper.classList.add('show');
+              // Hanya generate QR code jika ada URL yang dimasukkan
+              if (urlInput.value.trim()) {
+                generateQRCode();
+              }
             };
             reader.readAsDataURL(file);
           }
@@ -1022,8 +1139,12 @@
         removeLogoBtn.addEventListener("click", function() {
           selectedLogo = null;
           logoInput.value = '';
-          removeLogoBtn.style.display = 'none';
-          generateQRCode();
+          removeLogoBtn.classList.add('remove-logo');
+          logoPreviewWrapper.classList.remove('show');
+          // Hanya generate QR code jika ada URL yang dimasukkan
+          if (urlInput.value.trim()) {
+            generateQRCode();
+          }
         });
 
         function generateQRCode() {
@@ -1039,6 +1160,8 @@
           // Show loading state
           generateBtn.disabled = true;
           generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+          qrCodeCanvas.classList.add('loading');
+          qrCodeCanvas.classList.remove('show');
 
           // Generate QR code
           QRCode.toCanvas(
@@ -1055,6 +1178,7 @@
             function (error) {
               generateBtn.disabled = false;
               generateBtn.innerHTML = '<span>Generate QR</span><i class="fas fa-bolt"></i>';
+              qrCodeCanvas.classList.remove('loading');
 
               if (error) {
                 showError("Failed to generate QR code");
@@ -1078,12 +1202,17 @@
                 logo.src = selectedLogo;
                 logo.onload = function() {
                   ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
+                  // Show QR code with animation after logo is drawn
+                  setTimeout(() => {
+                    qrPlaceholder.style.display = "none";
+                    qrCodeCanvas.classList.add("show");
+                  }, 100);
                 };
+              } else {
+                // Show QR code with animation if no logo
+                qrPlaceholder.style.display = "none";
+                qrCodeCanvas.classList.add("show");
               }
-
-              // Show QR code with animation
-              qrPlaceholder.style.display = "none";
-              qrCodeCanvas.classList.add("show");
 
               // Enable buttons
               downloadBtn.disabled = false;
