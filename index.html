@@ -3,7 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ultimate QR Code Generator</title>
+    <title>QR Code Generator - Create Beautiful QR Codes Instantly | Free Online Tool</title>
+    <meta name="description" content="Free online QR Code Generator. Create beautiful, customizable QR codes instantly. Convert URLs, text, and more into QR codes. Download, share, and save your QR codes easily." />
+    <meta name="keywords" content="QR code generator, QR code maker, free QR code, online QR code, QR code creator, QR code scanner, QR code app, QR code tool, QR code design, QR code maker online" />
+    <meta name="author" content="ArdiAjaa" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://qr-codee-generate.vercel.app/" />
+    <meta property="og:title" content="QR Code Generator - Create Beautiful QR Codes Instantly" />
+    <meta property="og:description" content="Free online QR Code Generator. Create beautiful, customizable QR codes instantly. Convert URLs, text, and more into QR codes." />
+    <meta property="og:image" content="https://qr-codee-generate.vercel.app/icon.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://qr-codee-generate.vercel.app/" />
+    <meta property="twitter:title" content="QR Code Generator - Create Beautiful QR Codes Instantly" />
+    <meta property="twitter:description" content="Free online QR Code Generator. Create beautiful, customizable QR codes instantly. Convert URLs, text, and more into QR codes." />
+    <meta property="twitter:image" content="https://qr-codee-generate.vercel.app/icon.png" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://qr-codee-generate.vercel.app/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://qr-codee-generate.vercel.app/icon.png" />
+    <link rel="apple-touch-icon" href="https://qr-codee-generate.vercel.app/icon.png" />
+
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <!-- Fonts and Icons -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
       rel="stylesheet"
@@ -12,6 +44,29 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "QR Code Generator",
+      "url": "https://qr-codee-generate.vercel.app/",
+      "description": "Free online QR Code Generator. Create beautiful, customizable QR codes instantly.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "ArdiAjaa",
+        "url": "https://github.com/ardiajaa"
+      }
+    }
+    </script>
     <style>
       :root {
         --primary-color: #4361ee;
@@ -172,6 +227,34 @@
         border-radius: 50%;
       }
 
+      .option-group input[type="file"] {
+        max-width: 150px;
+        font-size: 0.9rem;
+      }
+
+      .btn-icon {
+        background: none;
+        border: none;
+        color: var(--error-color);
+        cursor: pointer;
+        padding: 0.3rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .btn-icon:hover {
+        transform: scale(1.1);
+      }
+
+      .logo-preview {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-left: 0.5rem;
+        display: none;
+      }
+
       .result-section {
         display: flex;
         flex-direction: column;
@@ -277,7 +360,11 @@
         color: #6c757d;
       }
 
-      .footer i {
+      .footer p {
+        margin-bottom: 1rem;
+      }
+
+      .footer p i {
         color: var(--error-color);
       }
 
@@ -288,6 +375,25 @@
       }
 
       .footer a:hover {
+        color: var(--primary-color);
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-links a {
+        color: #495057;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .social-links a:hover {
+        transform: translateY(-3px);
         color: var(--primary-color);
       }
 
@@ -603,6 +709,14 @@
         .confirm-modal-buttons button {
           width: 100%;
         }
+
+        .social-links {
+          gap: 0.8rem;
+        }
+        
+        .social-links a {
+          font-size: 1.3rem;
+        }
       }
 
       @media (max-width: 480px) {
@@ -671,6 +785,13 @@
               <label for="color">Color:</label>
               <input type="color" id="color" value="#000000" />
             </div>
+            <div class="option-group">
+              <label for="logo">Logo:</label>
+              <input type="file" id="logo" accept="image/*" />
+              <button id="remove-logo" class="btn-icon" title="Remove Logo" style="display: none;">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -705,6 +826,20 @@
 
       <footer class="footer">
         <p>Made with <i class="fas fa-heart"></i> by <a href="https://github.com/ardiajaa" target="_blank" rel="noopener noreferrer">ArdiAjaa</a></p>
+        <div class="social-links">
+          <a href="https://github.com/ardiajaa" target="_blank" rel="noopener noreferrer" class="github" title="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/putra-ardianto" target="_blank" rel="noopener noreferrer" class="linkedin" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://instagram.com/ardi.sch.id" target="_blank" rel="noopener noreferrer" class="instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://youtube.com/@Arezaja" target="_blank" rel="noopener noreferrer" class="youtube" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
       </footer>
     </div>
 
@@ -749,9 +884,12 @@
         const confirmModal = document.getElementById("confirm-modal");
         const confirmYes = document.getElementById("confirm-yes");
         const confirmNo = document.getElementById("confirm-no");
+        const logoInput = document.getElementById("logo");
+        const removeLogoBtn = document.getElementById("remove-logo");
 
         let lastQRData = null; // Untuk SVG/PDF export
         let currentDeleteIndex = null; // Untuk menyimpan index item yang akan dihapus
+        let selectedLogo = null;
 
         // Dark Mode
         function setDarkMode(enabled) {
@@ -866,6 +1004,28 @@
           if (e.key === "Enter") generateQRCode();
         });
 
+        // Handle logo selection
+        logoInput.addEventListener("change", function(e) {
+          const file = e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              selectedLogo = e.target.result;
+              removeLogoBtn.style.display = 'inline-block';
+              generateQRCode();
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+
+        // Handle logo removal
+        removeLogoBtn.addEventListener("click", function() {
+          selectedLogo = null;
+          logoInput.value = '';
+          removeLogoBtn.style.display = 'none';
+          generateQRCode();
+        });
+
         function generateQRCode() {
           const url = urlInput.value.trim();
           const size = sizeSelect.value;
@@ -878,8 +1038,7 @@
 
           // Show loading state
           generateBtn.disabled = true;
-          generateBtn.innerHTML =
-            '<i class="fas fa-spinner fa-spin"></i> Generating...';
+          generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
 
           // Generate QR code
           QRCode.toCanvas(
@@ -895,13 +1054,31 @@
             },
             function (error) {
               generateBtn.disabled = false;
-              generateBtn.innerHTML =
-                '<span>Generate QR</span><i class="fas fa-bolt"></i>';
+              generateBtn.innerHTML = '<span>Generate QR</span><i class="fas fa-bolt"></i>';
 
               if (error) {
                 showError("Failed to generate QR code");
                 console.error(error);
                 return;
+              }
+
+              // Add logo if selected
+              if (selectedLogo) {
+                const ctx = qrCodeCanvas.getContext('2d');
+                const logoSize = parseInt(size) * 0.2; // Logo size is 20% of QR code size
+                const logoX = (parseInt(size) - logoSize) / 2;
+                const logoY = (parseInt(size) - logoSize) / 2;
+
+                // Create a white background for the logo
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(logoX - 2, logoY - 2, logoSize + 4, logoSize + 4);
+
+                // Draw the logo
+                const logo = new Image();
+                logo.src = selectedLogo;
+                logo.onload = function() {
+                  ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
+                };
               }
 
               // Show QR code with animation
@@ -914,8 +1091,8 @@
               exportSvgBtn.disabled = false;
               exportPdfBtn.disabled = false;
 
-              // Simpan data terakhir untuk export SVG/PDF
-              lastQRData = { url, size, color };
+              // Save data for export
+              lastQRData = { url, size, color, logo: selectedLogo };
             }
           );
         }
@@ -980,7 +1157,8 @@
               timestamp: new Date().toISOString(),
               image: qrCodeCanvas.toDataURL('image/png'),
               size: sizeSelect.value,
-              color: colorInput.value
+              color: colorInput.value,
+              logo: selectedLogo
             };
             let history = JSON.parse(localStorage.getItem('qrHistory') || '[]');
             history.unshift(qrData);
