@@ -2,7 +2,7 @@
 
 A modern, responsive, and feature-rich QR Code Generator built with HTML, CSS, and JavaScript. Create beautiful QR codes instantly with customization options.
 
-![QR Code Generator Preview](https://qr-codee-generate.vercel.app/icon.png)
+![QR Code Generator Preview](https://github.com/ardiajaa/QRCode-Generator/blob/main/preview.png)
 
 ## 🌟 Features
 
