@@ -7,10 +7,16 @@ A modern, responsive, and feature-rich QR Code Generator built with HTML, CSS, a
 ## 🌟 Features
 
 - **Instant QR Code Generation**: Convert any URL or text into QR codes instantly
+- **QR Code Scanner**: 
+  - Scan QR codes using your device camera
+  - Copy scan results
+  - Open scanned URLs directly
+  - Support for various URL formats
 - **Customization Options**:
   - Adjustable QR code size (150x150 to 300x300)
   - Custom QR code colors
   - Logo overlay support
+  - Logo preview with responsive design
 - **Export Options**:
   - Download as PNG
   - Export as SVG
@@ -19,10 +25,18 @@ A modern, responsive, and feature-rich QR Code Generator built with HTML, CSS, a
   - Save generated QR codes
   - Download from history
   - Delete unwanted QR codes
+  - Confirmation modal for deletion
 - **Responsive Design**:
   - Works on all devices
-  - Dark mode support
+  - Dark mode support with smooth transitions
   - Mobile-friendly interface
+  - Optimized scanner view for mobile
+- **User Experience**:
+  - Smooth animations
+  - Loading states
+  - Toast notifications
+  - Error handling
+  - Dark mode persistence
 
 ## 🚀 Live Demo
 
@@ -34,6 +48,7 @@ Visit the live demo: [QR Code Generator](https://qr-codee-generate.vercel.app/)
 - CSS3
 - JavaScript (Vanilla)
 - [QRCode.js](https://github.com/davidshimjs/qrcodejs) - QR code generation
+- [html5-qrcode](https://github.com/mebjas/html5-qrcode) - QR code scanning
 - [jsPDF](https://github.com/parallax/jsPDF) - PDF generation
 - [Font Awesome](https://fontawesome.com/) - Icons
 - [Google Fonts](https://fonts.google.com/) - Typography
@@ -54,6 +69,7 @@ cd generate-qrcode
 
 ## 📝 Usage
 
+### Generating QR Codes
 1. Enter a URL or text in the input field
 2. Customize the QR code:
    - Select size
@@ -62,12 +78,20 @@ cd generate-qrcode
 3. Generate the QR code
 4. Download or save as needed
 
+### Scanning QR Codes
+1. Switch to the "Scan" tab
+2. Allow camera access
+3. Point your camera at a QR code
+4. View the scan result
+5. Copy or open the scanned content
+
 ## 🔧 Customization
 
 ### Adding a Logo
 1. Click the logo upload button
 2. Select an image file
 3. The logo will be automatically centered in the QR code
+4. Preview the logo before generating
 
 ### Changing Colors
 1. Use the color picker to select your desired color
@@ -87,7 +111,7 @@ The application is fully responsive and works on:
 
 ## 🌓 Dark Mode
 
-Toggle dark mode using the moon/sun icon in the header. The setting is saved in your browser's local storage.
+Toggle dark mode using the moon/sun icon in the header. The setting is saved in your browser's local storage and features smooth transitions between modes.
 
 ## 🤝 Contributing
 
@@ -108,6 +132,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - [QRCode.js](https://github.com/davidshimjs/qrcodejs) for QR code generation
+- [html5-qrcode](https://github.com/mebjas/html5-qrcode) for QR code scanning
 - [jsPDF](https://github.com/parallax/jsPDF) for PDF generation
 - [Font Awesome](https://fontawesome.com/) for icons
 - [Google Fonts](https://fonts.google.com/) for typography
