@@ -975,6 +975,11 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
 
+      #toggle-camera {
+        display: none;
+        margin-top: 1rem; /* Add some space below the reader */
+      }
+
       .scan-result {
         width: 100%;
         max-width: 600px;
@@ -1157,7 +1162,7 @@
         <div id="scan-tab" class="tab-content">
           <div class="scanner-container">
             <div id="reader"></div>
-            <button id="toggle-camera" class="btn" style="display: none;">
+            <button id="toggle-camera" class="btn">
               <i class="fas fa-sync-alt"></i> Toggle Camera
             </button>
             <div class="scan-result">
