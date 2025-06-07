@@ -1066,6 +1066,10 @@
           width: 100%;
         }
       }
+
+      #scan-again-btn {
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -1177,6 +1181,9 @@
                 <button id="open-scan-result" class="btn" disabled>
                   <i class="fas fa-external-link-alt"></i> Open
                 </button>
+                <button id="scan-again-btn" class="btn">
+                  <i class="fas fa-redo-alt"></i> Scan Again
+                </button>
               </div>
             </div>
           </div>
@@ -1254,6 +1261,7 @@
         const copyScanResult = document.getElementById("copy-scan-result");
         const openScanResult = document.getElementById("open-scan-result");
         const toggleCameraButton = document.getElementById("toggle-camera");
+        const scanAgainBtn = document.getElementById("scan-again-btn");
         let html5QrCode = null;
         let currentFacingMode = "environment"; // Default to back camera
 
@@ -1278,10 +1286,12 @@
               headerTitle.textContent = "QR Code Generator";
               headerDescription.textContent = "Convert any URL or text into a beautiful QR code instantly";
               toggleCameraButton.style.display = 'none'; // Hide toggle button
+              scanAgainBtn.style.display = 'none'; // Hide scan again button
             } else {
               headerTitle.textContent = "QR Code Scanner";
               headerDescription.textContent = "Scan QR codes using your device camera";
               toggleCameraButton.style.display = 'block'; // Show toggle button
+              // scanAgainBtn.style.display = 'block'; // Will be shown after successful scan
             }
             
             // Show active tab content
@@ -1293,6 +1303,11 @@
                 // Initialize scanner when scan tab is active
                 if (tabId === "scan") {
                   initializeScanner(currentFacingMode);
+                  // Reset scan result and buttons when entering scan tab
+                  scanResultContent.innerHTML = '<p class="placeholder">QR Code scan result will appear here</p>';
+                  copyScanResult.disabled = true;
+                  openScanResult.disabled = true;
+                  scanAgainBtn.style.display = 'none';
                 } else if (tabId === "generate" && html5QrCode) {
                   stopScanner();
                 }
@@ -1331,6 +1346,7 @@
             console.error("Error starting scanner:", err);
             showError("Failed to start camera. Please check camera permissions.");
             toggleCameraButton.style.display = 'none'; // Hide if camera fails
+            scanAgainBtn.style.display = 'none'; // Also hide scan again if camera fails
           });
         }
 
@@ -1346,6 +1362,7 @@
             html5QrCode.stop().then(() => {
               html5QrCode = null;
               toggleCameraButton.style.display = 'none'; // Hide button when scanner stops
+              scanAgainBtn.style.display = 'block'; // Show scan again button after stopping
             }).catch(err => {
               console.error("Error stopping scanner:", err);
             });
@@ -1355,7 +1372,7 @@
         // Handle successful scan
         function onScanSuccess(decodedText, decodedResult) {
           // Stop scanner after successful scan
-          stopScanner();
+          stopScanner(); // stopScanner now handles showing the scanAgainBtn
           
           // Update scan result
           scanResultContent.innerHTML = `<p>${decodedText}</p>`;
@@ -1363,6 +1380,7 @@
           // Enable action buttons
           copyScanResult.disabled = false;
           openScanResult.disabled = false;
+          scanAgainBtn.disabled = false; // Enable scan again button
           
           // Show success message
           showToast("QR Code scanned successfully!");
@@ -1373,6 +1391,15 @@
           // We can ignore the error as it's usually just "No QR code found"
           console.warn(`QR Code scan failed: ${error}`);
         }
+
+        // Scan Again button functionality
+        scanAgainBtn.addEventListener("click", () => {
+          scanResultContent.innerHTML = '<p class="placeholder">QR Code scan result will appear here</p>';
+          copyScanResult.disabled = true;
+          openScanResult.disabled = true;
+          scanAgainBtn.style.display = 'none'; // Hide itself
+          initializeScanner(currentFacingMode); // Restart scanner
+        });
 
         // Copy scan result
         copyScanResult.addEventListener("click", () => {
